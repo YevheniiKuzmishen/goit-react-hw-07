@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 import * as Yup from "yup";
 import css from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsSlice";
+import { addContact } from "../../redux/contactsOps";
 
 export default function ContactForm() {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ export default function ContactForm() {
       .max(50, "Maximum 50 symbols!")
       .required("Name is required"),
     contactnumber: Yup.string()
-      .matches(/^\d{3}-\d{2}-\d{2}$/, "Number format should be 888-88-88")
+      .matches(/^\d{3}-\d{3}-\d{4}$/, "Number format should be 888-888-8888")
       .required("Number is required"),
   });
 
@@ -60,7 +60,7 @@ export default function ContactForm() {
               className={css.input}
               type="tel"
               name="contactnumber"
-              placeholder="888-88-88"
+              placeholder="888-888-8888"
             />
             <ErrorMessage
               className={css.formError}
